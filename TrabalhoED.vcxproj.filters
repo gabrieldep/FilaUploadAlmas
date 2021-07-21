@@ -18,5 +18,25 @@
     <ClCompile Include="TrabalhoED.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fila.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TipoItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TipoCelula.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Fila.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TipoItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TipoCelula.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
