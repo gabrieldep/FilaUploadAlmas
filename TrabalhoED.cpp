@@ -36,6 +36,24 @@ void Send(Fila(&servidores)[20], Fila* historico) {
 	}
 }
 
+void Flush(Fila(&servidores)[20], Fila* historico) {
+	TipoCelula tc;
+	int n = historico->GetTamanho();
+	for (int i = 0; i < n; i++) {
+		tc = historico->Desenfilera();
+		tc.Imprime();
+		historico->Enfileira(tc);
+	}
+
+	for (int j = 0; j < 20; j++) {
+		for (int i = 0; i < servidores[j].GetTamanho(); i++) {
+			tc = servidores[j].Desenfilera();
+			tc.Imprime();
+			servidores[j].Enfileira(tc);
+		}
+	}
+}
+
 int main()
 {
 	Fila* historico = new Fila();
@@ -51,6 +69,7 @@ int main()
 
 
 	Send(servidores, historico);
+	Flush(servidores, historico);
 
 	Tran(&servidores[1], &servidores[2]);
 
