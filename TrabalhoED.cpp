@@ -46,11 +46,31 @@ void Flush(Fila(&servidores)[20], Fila* historico) {
 	}
 
 	for (int j = 0; j < 20; j++) {
-		for (int i = 0; i < servidores[j].GetTamanho(); i++) {
+		int n = servidores[j].GetTamanho();
+		for (int i = 0; i < n; i++) {
 			tc = servidores[j].Desenfilera();
 			tc.Imprime();
 			servidores[j].Enfileira(tc);
 		}
+	}
+}
+
+void Warn(Fila* servidor, int posicao) {
+	Fila* auxiliar = new Fila();
+	TipoCelula tc;
+	for (int i = 0; i < posicao - 1; i++) {
+		auxiliar->Enfileira(servidor->Desenfilera());
+	}
+
+	tc = servidor->Desenfilera();
+	while(!servidor->Vazia()) {
+		auxiliar->Enfileira(servidor->Desenfilera());
+	}
+
+	servidor->Enfileira(tc);
+	int n = auxiliar->GetTamanho();
+	while (!auxiliar->Vazia()) {
+		servidor->Enfileira(auxiliar->Desenfilera());
 	}
 }
 
@@ -62,12 +82,15 @@ int main()
 	Info(&servidores[0], "Silvino");
 	Info(&servidores[1], "Gabriel");
 	Info(&servidores[1], "Vini");
+	Info(&servidores[1], "Sonia");
+	Info(&servidores[1], "Joao");
+	Info(&servidores[1], "Cesar");
 	Info(&servidores[2], "Daniel");
 	Info(&servidores[2], "Mateus");
 	Info(&servidores[3], "Barbara");
 	Info(&servidores[3], "Lorena");
 
-
+	Warn(&servidores[1], 3);
 	Send(servidores, historico);
 	Flush(servidores, historico);
 
