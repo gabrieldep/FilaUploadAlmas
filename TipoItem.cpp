@@ -25,5 +25,5 @@ std::string TipoItem::GetChave()
 void TipoItem::Imprime()
 {
 	std::string a = GetChave();
-	std::cout << a;
+	std::cout << a << "\n";
 }
