@@ -21,10 +21,10 @@ void Tran(Fila* servidor1, Fila* servidor2)
 	}
 }
 
-void Erro(Fila* servidor)
+void Erro(Fila* servidor, int numeroServer)
 {
 	TipoCelula tc;
-	std::cout << "ERRO <S>" << "\n";
+	std::cout << "ERRO " << numeroServer << "\n";
 	int n = servidor->GetTamanho();
 	for (int i = 0; i < n; i++)
 	{
@@ -98,13 +98,16 @@ int main(int argc, char* argv[])
 	char* result;
 	int i;
 	int numeroDeServidores = 0;
-	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/Arquivo.txt", "rt");
+	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in2.txt", "rt");
 	i = 1;
 	Fila servidores[20];
 	Fila* historico = new Fila();
 	while (!feof(arquivo))
 	{
 		result = fgets(Linha, 100, arquivo);
+
+		if (result == NULL)break;
+
 		std::string s = result;
 
 		std::string command = s.substr(0, 4);
@@ -130,7 +133,7 @@ int main(int argc, char* argv[])
 		else if (command == "ERRO")
 		{
 			int server = std::stoi(s.substr(4, 4));
-			Erro(&servidores[server]);
+			Erro(&servidores[server], server);
 		}
 		else if (command == "SEND")
 		{
@@ -143,7 +146,6 @@ int main(int argc, char* argv[])
 		else
 		{
 			numeroDeServidores = *result - 48;
-			Fila servidores[20];
 		}
 	}
 	fclose(arquivo);
