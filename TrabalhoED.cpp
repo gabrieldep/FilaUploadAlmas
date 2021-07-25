@@ -4,6 +4,11 @@
 #include <cstddef>
 
 
+/// <summary>
+/// Adiciona uma alma ao buffer solicitado
+/// </summary>
+/// <param name="servidor">Servidor onde a alma será adicionada</param>
+/// <param name="mensagem">Alma a ser adicionada</param>
 void Info(Fila* servidor, std::string mensagem)
 {
 	TipoCelula* tipoCelula = new TipoCelula();
@@ -12,6 +17,11 @@ void Info(Fila* servidor, std::string mensagem)
 	delete tipoCelula;
 }
 
+/// <summary>
+/// Transfere as almas de um servidor 1 para outro.
+/// </summary>
+/// <param name="servidor1">Servidor de onde virão as almas</param>
+/// <param name="servidor2">Servidor para onde irão as almas</param>
 void Tran(Fila* servidor1, Fila* servidor2)
 {
 	int n = servidor1->GetTamanho();
@@ -21,6 +31,11 @@ void Tran(Fila* servidor1, Fila* servidor2)
 	}
 }
 
+/// <summary>
+/// Imprime as almas de um servidor que ocorreu um erro.
+/// </summary>
+/// <param name="servidor">Servidor onde as almas estão.</param>
+/// <param name="numeroServer">Indice do servidor</param>
 void Erro(Fila* servidor, int numeroServer)
 {
 	TipoCelula tc;
@@ -33,6 +48,11 @@ void Erro(Fila* servidor, int numeroServer)
 	}
 }
 
+/// <summary>
+/// Envia as primeiras almas de cada servidor.
+/// </summary>
+/// <param name="servidores">Array com os servidores.</param>
+/// <param name="historico">Fila com o historico de envios.</param>
 void Send(Fila(&servidores)[20], Fila* historico)
 {
 	TipoCelula tc;
@@ -46,6 +66,11 @@ void Send(Fila(&servidores)[20], Fila* historico)
 	}
 }
 
+/// <summary>
+/// Imprime todas as almas do historico e de cada servidor.
+/// </summary>
+/// <param name="servidores">Array com os servidores.</param>
+/// <param name="historico">Fila com o historico de almas.</param>
 void Flush(Fila(&servidores)[20], Fila* historico)
 {
 	TipoCelula tc;
@@ -69,6 +94,11 @@ void Flush(Fila(&servidores)[20], Fila* historico)
 	}
 }
 
+/// <summary>
+/// Move o valor de determinada posicao para a primeira colocação da fila.
+/// </summary>
+/// <param name="servidor">Servidor de onde deve-se mover a alma.</param>
+/// <param name="posicao">Index da alma.</param>
 void Warn(Fila* servidor, int posicao)
 {
 	Fila* auxiliar = new Fila();
@@ -98,7 +128,7 @@ int main(int argc, char* argv[])
 	char* result;
 	int i;
 	int numeroDeServidores = 0;
-	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in2.txt", "rt");
+	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in0.txt", "rt");
 	i = 1;
 	Fila servidores[20];
 	Fila* historico = new Fila();
