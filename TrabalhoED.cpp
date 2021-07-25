@@ -101,6 +101,7 @@ void Flush(Fila(&servidores)[20], Fila* historico)
 /// <param name="posicao">Index da alma.</param>
 void Warn(Fila* servidor, int posicao)
 {
+	posicao++;
 	Fila* auxiliar = new Fila();
 	TipoCelula tc;
 	for (int i = 0; i < posicao - 1; i++)
@@ -128,7 +129,7 @@ int main(int argc, char* argv[])
 	char* result;
 	int i;
 	int numeroDeServidores = 0;
-	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in0.txt", "rt");
+	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in2.txt", "rt");
 	i = 1;
 	Fila servidores[20];
 	Fila* historico = new Fila();
