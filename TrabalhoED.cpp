@@ -53,10 +53,10 @@ void Erro(Fila* servidor, int numeroServer)
 /// </summary>
 /// <param name="servidores">Array com os servidores.</param>
 /// <param name="historico">Fila com o historico de envios.</param>
-void Send(Fila(&servidores)[2000], Fila* historico)
+void Send(Fila(&servidores)[2000], Fila* historico, int tamanho)
 {
 	TipoCelula tc;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < tamanho; i++)
 	{
 		if (servidores[i].GetTamanho() != 0)
 		{
@@ -71,7 +71,7 @@ void Send(Fila(&servidores)[2000], Fila* historico)
 /// </summary>
 /// <param name="servidores">Array com os servidores.</param>
 /// <param name="historico">Fila com o historico de almas.</param>
-void Flush(Fila(&servidores)[2000], Fila* historico)
+void Flush(Fila(&servidores)[2000], Fila* historico, int tamanho)
 {
 	TipoCelula tc;
 	int n = historico->GetTamanho();
@@ -82,7 +82,7 @@ void Flush(Fila(&servidores)[2000], Fila* historico)
 		historico->Enfileira(tc);
 	}
 
-	for (int j = 0; j < 20; j++)
+	for (int j = 0; j < tamanho; j++)
 	{
 		int n = servidores[j].GetTamanho();
 		for (int i = 0; i < n; i++)
@@ -128,8 +128,8 @@ int main(int argc, char* argv[])
 	char Linha[100];
 	char* result;
 	int i;
-	int numeroDeServidores = 0;
 	FILE* arquivo = fopen(argv[1], "rt");
+	int numeroDeServidores = *fgets(Linha, 100, arquivo) - 48;
 	i = 1;
 	Fila servidores[2000];
 	Fila* historico = new Fila();
@@ -168,11 +168,11 @@ int main(int argc, char* argv[])
 		}
 		else if (command == "SEND")
 		{
-			Send(servidores, historico);
+			Send(servidores, historico, numeroDeServidores);
 		}
 		else if (command == "FLUS")
 		{
-			Flush(servidores, historico);
+			Flush(servidores, historico, numeroDeServidores);
 		}
 		else
 		{
