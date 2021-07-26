@@ -53,7 +53,7 @@ void Erro(Fila* servidor, int numeroServer)
 /// </summary>
 /// <param name="servidores">Array com os servidores.</param>
 /// <param name="historico">Fila com o historico de envios.</param>
-void Send(Fila(&servidores)[20], Fila* historico)
+void Send(Fila(&servidores)[2000], Fila* historico)
 {
 	TipoCelula tc;
 	for (int i = 0; i < 20; i++)
@@ -71,7 +71,7 @@ void Send(Fila(&servidores)[20], Fila* historico)
 /// </summary>
 /// <param name="servidores">Array com os servidores.</param>
 /// <param name="historico">Fila com o historico de almas.</param>
-void Flush(Fila(&servidores)[20], Fila* historico)
+void Flush(Fila(&servidores)[2000], Fila* historico)
 {
 	TipoCelula tc;
 	int n = historico->GetTamanho();
@@ -129,9 +129,9 @@ int main(int argc, char* argv[])
 	char* result;
 	int i;
 	int numeroDeServidores = 0;
-	FILE* arquivo = fopen("C:/Users/Gabriel/Documents/in2.txt", "rt");
+	FILE* arquivo = fopen(argv[1], "rt");
 	i = 1;
-	Fila servidores[20];
+	Fila servidores[2000];
 	Fila* historico = new Fila();
 	while (!feof(arquivo))
 	{
